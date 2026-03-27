@@ -2,7 +2,7 @@
 
 ## 📌 Descripción del Proyecto
 
-Este proyecto consiste en el diseño, modelado y simulación de un robot móvil de cuatro ruedas utilizando **ROS2** y **Gazebo**. El robot está compuesto por un chasis principal y cuatro ruedas, permitiendo su desplazamiento en un entorno simulado con comportamiento físico realista.
+Este proyecto consiste en el diseño, modelado y simulación de un robot móvil de cuatro ruedas utilizando **ROS2** y **Gazebo**. El robot está compuesto por un chasis principal y cuatro ruedas, permitiendo su visualización y simulación en un entorno físico virtual.
 
 El sistema integra la descripción del robot mediante archivos URDF, la simulación en Gazebo y la visualización en RViz.
 
@@ -12,10 +12,10 @@ El sistema integra la descripción del robot mediante archivos URDF, la simulaci
 
 El objetivo principal es desarrollar un modelo funcional de robot móvil de cuatro ruedas, como evolución de modelos más simples, permitiendo:
 
-* Representar su estructura mediante URDF.
-* Definir propiedades físicas realistas (colisiones e inercias).
-* Simular su comportamiento en Gazebo.
-* Automatizar su ejecución mediante archivos de lanzamiento.
+- Representar su estructura mediante URDF.
+- Incorporar propiedades físicas como colisiones e inercias.
+- Simular su comportamiento en Gazebo.
+- Automatizar su ejecución mediante archivos de lanzamiento.
 
 ---
 
@@ -23,76 +23,61 @@ El objetivo principal es desarrollar un modelo funcional de robot móvil de cuat
 
 ### 🔹 Modelado URDF
 
-El robot ha sido modelado utilizando un archivo URDF ubicado en:
-
-```
-urdf/robot_4_ruedas.urdf
-```
+El robot ha sido modelado utilizando el archivo: urdf/robot_4_ruedas.urdf
 
 Este archivo define:
 
-* Un enlace principal (`base_link`) que representa el chasis.
-* Cuatro ruedas:
-
-  * `left_wheel`
-  * `right_wheel`
-  * `front_left_wheel`
-  * `front_right_wheel`
-* Las uniones (`joint`) de tipo `revolute`, permitiendo la rotación de las ruedas.
+- Un enlace principal (`base_link`) que representa el chasis.
+- Cuatro ruedas:
+  - `left_wheel`
+  - `right_wheel`
+  - `front_left_wheel`
+  - `front_right_wheel`
+- Uniones (`joint`) de tipo `revolute`, que permiten la rotación de las ruedas.
 
 ---
 
 ### 🔹 Propiedades Físicas
 
-Se han definido correctamente las propiedades físicas necesarias para la simulación:
+El modelo incluye propiedades físicas necesarias para la simulación:
 
-* **Colisiones (`collision`)**:
-  Permiten que el robot interactúe físicamente con el entorno en Gazebo.
+- **Colisiones (`collision`)**:  
+  Permiten que el robot interactúe con el entorno en Gazebo.
 
-* **Inercia (`inertial`)**:
-  Se han asignado masa y matrices de inercia al chasis y a cada rueda, lo cual es fundamental para un comportamiento dinámico realista.
+- **Inercia (`inertial`)**:  
+  Se han definido valores de masa e inercia para el chasis y las ruedas.
 
-Estas propiedades aseguran que el robot:
-
-* No atraviese el suelo.
-* Responda correctamente a la gravedad y fuerzas físicas.
+Estas propiedades permiten que el robot tenga una interacción más realista con el entorno de simulación.
 
 ---
 
 ### 🔹 Simulación en Gazebo
 
-El robot es simulado en Gazebo mediante un archivo de lanzamiento que:
+El robot se integra en Gazebo mediante un archivo de lanzamiento que:
 
-* Inicia el entorno de simulación.
-* Carga el modelo del robot.
-* Inserta el robot en la escena.
+- Inicia el entorno de simulación.
+- Carga el modelo del robot.
+- Inserta el robot en la escena.
 
-Durante la simulación se puede observar:
-
-* La estructura completa del robot.
-* La interacción con el entorno físico.
+En la simulación se puede observar la estructura del robot y su interacción básica con el entorno.
 
 ---
 
 ### 🔹 Archivo de Lanzamiento (.launch.py)
 
-El archivo principal de ejecución es:
+El archivo principal de ejecución es: launch/robot_4_ruedas_gazebo.launch.py
 
-```
-launch/robot_4_ruedas_gazebo.launch.py
-```
+Este archivo se encarga de:
 
-Este archivo realiza:
+- Incluir el entorno de Gazebo.
+- Leer el archivo URDF del robot.
+- Publicar el modelo mediante `robot_state_publisher`.
+- Insertar el robot en la simulación mediante un nodo de spawn.
 
-* Inclusión del entorno de Gazebo.
-* Lectura del archivo URDF.
-* Publicación del robot mediante `robot_state_publisher`.
-* Inserción del robot en Gazebo usando un nodo de spawn.
+El archivo contempla compatibilidad con:
 
-También contempla compatibilidad con:
-
-* `gazebo_ros`
-* `ros_gz_sim`
+- `gazebo_ros`
+- `ros_gz_sim`
 
 ---
 
@@ -100,24 +85,22 @@ También contempla compatibilidad con:
 
 El proyecto está organizado de la siguiente manera:
 
-```
 src/
 └── robot_4_ruedas_description/
-    ├── launch/
-    │   └── robot_4_ruedas_gazebo.launch.py
-    ├── urdf/
-    │   └── robot_4_ruedas.urdf
-    ├── rviz/
-    │   └── robot_4_ruedas.rviz
-    ├── CMakeLists.txt
-    └── package.xml
-```
+├── launch/
+│   └── robot_4_ruedas_gazebo.launch.py
+├── urdf/
+│   └── robot_4_ruedas.urdf
+├── rviz/
+│   └── robot_4_ruedas.rviz
+├── CMakeLists.txt
+└── package.xml
 
-Archivos importantes:
+### Archivos importantes
 
-* **URDF del robot**: `urdf/robot_4_ruedas.urdf`
-* **Archivo de lanzamiento**: `launch/robot_4_ruedas_gazebo.launch.py`
-* **Configuración de RViz**: `rviz/robot_4_ruedas.rviz`
+- **URDF del robot**: `urdf/robot_4_ruedas.urdf`
+- **Archivo de lanzamiento**: `launch/robot_4_ruedas_gazebo.launch.py`
+- **Configuración de RViz**: `rviz/robot_4_ruedas.rviz`
 
 ---
 
@@ -127,15 +110,11 @@ Archivos importantes:
 
 Desde la raíz del workspace:
 
-```bash
 colcon build --packages-select robot_4_ruedas_description
-```
 
 Luego:
 
-```bash
 source install/setup.bash
-```
 
 ---
 
@@ -143,15 +122,12 @@ source install/setup.bash
 
 Para lanzar la simulación:
 
-```bash
 ros2 launch robot_4_ruedas_description robot_4_ruedas_gazebo.launch.py
-```
 
-Alternativamente, se puede להשתמש el script:
 
-```bash
+Alternativamente, se puede utilizar el script:
+
 bash run.bash
-```
 
 ---
 
@@ -160,27 +136,28 @@ bash run.bash
 Al ejecutar el proyecto se debe observar:
 
 * El entorno de Gazebo abierto.
-* El robot de cuatro ruedas correctamente cargado.
-* El robot posicionado sobre el plano y listo para simulación.
+* El robot de cuatro ruedas cargado en la escena.
+* El modelo visible y posicionado sobre el plano.
 
 ---
 
 ## 📊 Resultados
 
-El robot fue correctamente modelado y simulado, logrando:
+El proyecto permite:
 
-* Representación visual en RViz.
-* Integración funcional con Gazebo.
-* Definición adecuada de propiedades físicas.
+* Visualizar el robot en RViz.
+* Cargar el modelo en Gazebo.
+* Integrar correctamente la descripción del robot con el entorno de simulación.
 
 ---
 
 ## 🧠 Conclusiones
 
-* La correcta definición de **colisiones** es fundamental para evitar errores en la simulación.
-* Las **inercias** permiten un comportamiento físico más realista.
-* El uso de archivos de lanzamiento simplifica la ejecución del sistema completo.
-* La integración entre URDF, Gazebo y ROS2 permite desarrollar simulaciones robóticas completas de manera modular.
+* La definición de **colisiones** es importante para la interacción en Gazebo.
+* Las **inercias** permiten representar propiedades físicas del robot.
+* El uso de **URDF** facilita la descripción estructural del robot.
+* El archivo de lanzamiento permite ejecutar todo el sistema de forma integrada.
+* La combinación de ROS2 y Gazebo permite validar modelos robóticos en simulación.
 
 ---
 
@@ -194,6 +171,4 @@ Trabajo desarrollado en grupo.
 
 * Formato: repositorio con estructura ROS2.
 * Ejecución: mediante archivo launch.
-* Evaluación: basada en la correcta visualización y funcionamiento del robot en Gazebo.
-
----
+* Evaluación: basada en la correcta visualización del robot en Gazebo y revisión del código.
